@@ -4,21 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c079921-a71a-4342-a2df-a906ef834b4b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/Actions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/Coordinates.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/Simulation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/entity/Creature.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/entity/Entity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/entity/Herbivore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/entity/Predator.java" afterDir="false" />
+    <list default="true" id="5c079921-a71a-4342-a2df-a906ef834b4b" name="Changes" comment="First commit">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/WorldMapConsoleRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/WorldMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/Coordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,18 +35,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.vladshi.javalearning.Main" />
+      <module name="Simulation2DWorld" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.vladshi.javalearning.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -73,11 +86,24 @@
       <option name="presentableId" value="Default" />
       <updated>1728383359912</updated>
       <workItem from="1728383361027" duration="3608000" />
-      <workItem from="1728393449535" duration="1123000" />
+      <workItem from="1728393449535" duration="8102000" />
     </task>
+    <task id="LOCAL-00001" summary="First commit">
+      <option name="closed" value="true" />
+      <created>1728397398362</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728397398362</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
   </component>
 </project>

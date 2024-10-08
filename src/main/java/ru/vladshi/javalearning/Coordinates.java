@@ -1,4 +1,4 @@
 package ru.vladshi.javalearning;
 
-public record Coordinates(int x, int y) {
+public record Coordinates(int row, int column) {
 }

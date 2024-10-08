@@ -4,5 +4,5 @@ abstract public class Creature extends Entity {
     int speed;
     int healthPoints;
 
-    void makeMove(){};
+    public abstract void makeMove();
 }

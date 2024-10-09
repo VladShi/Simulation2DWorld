@@ -1,5 +1,10 @@
 package ru.vladshi.javalearning.config;
 
+import ru.vladshi.javalearning.entity.*;
+
+import java.util.Map;
+import java.util.WeakHashMap;
+
 public class Settings {
     public static final int WORLD_MAP_MAX_WIDTH = 10;
     public static final int WORLD_MAP_MAX_HEIGHT = 10;
@@ -9,9 +14,14 @@ public class Settings {
     public static final int PREDATOR_SPEED = 2;
     public static final int PREDATOR_ATTACK_POWER = 20;
 
-    public static final int NUMBER_OF_PREDATORS = 1;
-    public static final int NUMBER_OF_HERBIVORES = 2;
-    public static final int NUMBER_OF_GRASS = 2;
-    public static final int NUMBER_OF_TREES = 2;
-    public static final int NUMBER_OF_ROCKS = 2;
+    public static final Map<Class<?>, Integer> NUMBER_OF_ENTITIES;
+
+    static {
+        NUMBER_OF_ENTITIES = new WeakHashMap<Class<?>, Integer>();
+        NUMBER_OF_ENTITIES.put(Rock.class, 2);
+        NUMBER_OF_ENTITIES.put(Tree.class, 2);
+        NUMBER_OF_ENTITIES.put(Grass.class, 2);
+        NUMBER_OF_ENTITIES.put(Herbivore.class, 2);
+        NUMBER_OF_ENTITIES.put(Predator.class, 1);
+    }
 }

@@ -33,24 +33,6 @@ public class WorldMap {
         }
     }
 
-    public void fillRandomly() {
-        for (int i = 0; i < Settings.NUMBER_OF_TREES; i++) {
-            putEntityToRandomEmptyCell(new Tree());
-        }
-        for (int i = 0; i < Settings.NUMBER_OF_ROCKS; i++) {
-            putEntityToRandomEmptyCell(new Rock());
-        }
-        for (int i = 0; i < Settings.NUMBER_OF_GRASS; i++) {
-            putEntityToRandomEmptyCell(new Grass());
-        }
-        for (int i = 0; i < Settings.NUMBER_OF_HERBIVORES; i++) {
-            putEntityToRandomEmptyCell(new Herbivore());
-        }
-        for (int i = 0; i < Settings.NUMBER_OF_PREDATORS; i++) {
-            putEntityToRandomEmptyCell(new Predator());
-        }
-    }
-
     public Entity getEntity(Coordinates coordinates) {
         return entitiesMap.get(coordinates);
     }

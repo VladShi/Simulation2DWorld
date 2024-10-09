@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c079921-a71a-4342-a2df-a906ef834b4b" name="Changes" comment="Add WorldMapConsoleRenderer for empty world">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/config/Settings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/entity/Grass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/entity/Rock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/entity/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="5c079921-a71a-4342-a2df-a906ef834b4b" name="Changes" comment="Refactor WorldMap.fillRandomly()&#10;&#10;It looked bad. Now it looks even worse.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/WorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/WorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/WorldMapConsoleRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/WorldMapConsoleRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/entity/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/entity/Creature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/entity/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/entity/Herbivore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/entity/Herbivore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/entity/Predator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/entity/Predator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/Actions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/Actions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/config/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/vladshi/javalearning/config/Settings.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +86,7 @@
       <updated>1728383359912</updated>
       <workItem from="1728383361027" duration="3608000" />
       <workItem from="1728393449535" duration="8102000" />
+      <workItem from="1728461369353" duration="6692000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -105,7 +96,23 @@
       <option name="project" value="LOCAL" />
       <updated>1728397398362</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add initial random world populated with animals">
+      <option name="closed" value="true" />
+      <created>1728423608275</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728423608275</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Refactor WorldMap.fillRandomly()&#10;&#10;It looked bad. Now it looks even worse.">
+      <option name="closed" value="true" />
+      <created>1728467052410</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728467052410</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,6 +131,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="Add initial random world populated with animals" />
+    <MESSAGE value="Refactor WorldMap.fillRandomly()&#10;&#10;It looked bad. Now it looks even worse." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor WorldMap.fillRandomly()&#10;&#10;It looked bad. Now it looks even worse." />
   </component>
 </project>

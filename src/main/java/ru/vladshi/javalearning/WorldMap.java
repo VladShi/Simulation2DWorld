@@ -19,6 +19,7 @@ public class WorldMap {
 
     public void putEntity(Coordinates coordinates, Entity entity) {
         entity.coordinates = coordinates;
+        entity.worldMap = this;
         entitiesMap.put(coordinates, entity);
     }
 

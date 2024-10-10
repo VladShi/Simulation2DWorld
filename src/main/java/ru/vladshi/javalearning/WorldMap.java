@@ -11,7 +11,7 @@ public class WorldMap {
     public static final int MAX_WIDTH = Settings.WORLD_MAP_MAX_WIDTH;
     public static final int MAX_HEIGHT = Settings.WORLD_MAP_MAX_HEIGHT;
 
-    HashMap<Coordinates, Entity> entitiesMap = new HashMap<>();
+    public HashMap<Coordinates, Entity> entitiesMap = new HashMap<>();
 
     public boolean isCellEmpty(Coordinates coordinates) {
         return !entitiesMap.containsKey(coordinates);
@@ -35,6 +35,6 @@ public class WorldMap {
     }
 
     public Entity getEntity(Coordinates coordinates) {
-        return entitiesMap.get(coordinates);
+        return entitiesMap.get(coordinates); // TODO возвращать опшионал, убрать метод isCellEmpty
     }
 }

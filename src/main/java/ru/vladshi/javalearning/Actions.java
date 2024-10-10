@@ -15,7 +15,7 @@ public class Actions {
         при таком подходе расширение сущностей кажется более легким, достаточно просто добавить в хеш-таблицу
         в Settings. Ничего другого не смог придумать
          */
-        for (Map.Entry<Class<?>, Integer> entry : Settings.NUMBER_OF_ENTITIES.entrySet()) {
+        for (Map.Entry<Class<? extends Entity>, Integer> entry : Settings.NUMBER_OF_ENTITIES.entrySet()) {
             Class<?> entityClass = entry.getKey();
             for (int i = 0; i < entry.getValue(); i++) {
                 try {

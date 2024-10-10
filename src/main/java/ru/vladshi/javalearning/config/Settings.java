@@ -14,10 +14,10 @@ public class Settings {
     public static final int PREDATOR_SPEED = 2;
     public static final int PREDATOR_ATTACK_POWER = 20;
 
-    public static final Map<Class<?>, Integer> NUMBER_OF_ENTITIES;
+    public static final Map<Class<? extends Entity>, Integer> NUMBER_OF_ENTITIES;
 
     static {
-        NUMBER_OF_ENTITIES = new WeakHashMap<Class<?>, Integer>();
+        NUMBER_OF_ENTITIES = new WeakHashMap<Class<? extends Entity>, Integer>();
         NUMBER_OF_ENTITIES.put(Rock.class, 2);
         NUMBER_OF_ENTITIES.put(Tree.class, 2);
         NUMBER_OF_ENTITIES.put(Grass.class, 2);

@@ -4,6 +4,7 @@ import ru.vladshi.javalearning.config.Settings;
 import ru.vladshi.javalearning.entity.*;
 
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class WorldMap {
@@ -12,10 +13,6 @@ public class WorldMap {
     public static final int MAX_HEIGHT = Settings.WORLD_MAP_MAX_HEIGHT;
 
     public HashMap<Coordinates, Entity> entitiesMap = new HashMap<>();
-
-    public boolean isCellEmpty(Coordinates coordinates) {
-        return !entitiesMap.containsKey(coordinates);
-    }
 
     public void putEntity(Coordinates coordinates, Entity entity) {
         entity.coordinates = coordinates;
@@ -27,14 +24,14 @@ public class WorldMap {
         while (true) {
             Coordinates randomCoordinates =  new Coordinates(ThreadLocalRandom.current().nextInt(0, MAX_HEIGHT),
                                                              ThreadLocalRandom.current().nextInt(0, MAX_WIDTH));
-            if (isCellEmpty(randomCoordinates)) {
+            if (getCellContents(randomCoordinates).isEmpty()) {
                 putEntity(randomCoordinates, entity);
                 break;
             }
         }
     }
 
-    public Entity getEntity(Coordinates coordinates) {
-        return entitiesMap.get(coordinates); // TODO возвращать опшионал, убрать метод isCellEmpty
+    public Optional<Entity> getCellContents(Coordinates coordinates) {
+        return Optional.ofNullable(entitiesMap.get(coordinates));
     }
 }

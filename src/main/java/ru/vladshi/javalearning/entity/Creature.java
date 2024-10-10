@@ -14,11 +14,11 @@ abstract public class Creature extends Entity {
 
     public abstract void makeMove();
 
-    public Queue<Coordinates> findPath(Class<? extends Entity> targetClass) {
+    public Queue<Coordinates> findPath(Class<? extends Entity> classOfTarget) {
         // проверяем есть ли на карте мира Entity до которого мы ищем путь
         boolean mapHasTargetClassEntity = false;
         for (Entity entity : this.worldMap.entitiesMap.values())
-            if (entity.getClass().equals(targetClass)) {
+            if (entity.getClass().equals(classOfTarget)) {
                 mapHasTargetClassEntity = true;
                 break;
             }
@@ -73,15 +73,13 @@ abstract public class Creature extends Entity {
                     Coordinates neighbourCellCoordinates = new Coordinates(nRow, nCol);
                     path[nRow][nCol] = currentCoordinates;
 //                    distances[nRow][nCol] = distances[curRow][curColumn] + 1; (пока в дистанциях нет необходимости)
-                    if (!this.worldMap.isCellEmpty(neighbourCellCoordinates)) {
-                        if (this.worldMap.getEntity(neighbourCellCoordinates).getClass().equals(targetClass)) {
-                            target = neighbourCellCoordinates;
-                            break outerLoop;
-                        }
-                        else
-                            continue;
+                    Optional<Entity> cell = this.worldMap.getCellContents(neighbourCellCoordinates);
+                    if (cell.isEmpty()) {
+                        queue.add(neighbourCellCoordinates); // добавляем в очередь на проверку
+                    } else if (cell.get().getClass().equals(classOfTarget)) {
+                        target = neighbourCellCoordinates;
+                        break outerLoop;
                     }
-                    queue.add(neighbourCellCoordinates); // добавляем в очередь на проверку
                 }
             }
         }
@@ -94,9 +92,7 @@ abstract public class Creature extends Entity {
         }
         pathList = pathList.reversed();
         pathList.removeLast();
-        System.out.println(pathList);
         return pathList;
-
 //        int distanceToTarget = distances[target.row()][target.column()];
 //        return distanceToTarget; (пока в дистанциях нет необходимости)
     }

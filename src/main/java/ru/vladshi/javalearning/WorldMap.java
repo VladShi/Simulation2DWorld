@@ -34,4 +34,12 @@ public class WorldMap {
     public Optional<Entity> getCellContents(Coordinates coordinates) {
         return Optional.ofNullable(entitiesMap.get(coordinates));
     }
+
+    public boolean doesMapHaveObjectsOf(Class<? extends Entity> clazz) {
+        for (Entity entity : entitiesMap.values())
+            if (entity.getClass().equals(clazz)) {
+                return true;
+            }
+        return false;
+    }
 }

@@ -16,14 +16,8 @@ abstract public class Creature extends Entity {
 
     public Queue<Coordinates> findPath(Class<? extends Entity> classOfTarget) {
         // проверяем есть ли на карте мира Entity до которого мы ищем путь
-        boolean mapHasTargetClassEntity = false;
-        for (Entity entity : this.worldMap.entitiesMap.values())
-            if (entity.getClass().equals(classOfTarget)) {
-                mapHasTargetClassEntity = true;
-                break;
-            }
-        if (!mapHasTargetClassEntity)
-            return new LinkedList<Coordinates>();
+        if (!this.worldMap.doesMapHaveObjectsOf(classOfTarget))
+            return new LinkedList<>();
 
         // визуализация различных алгоритмов https://qiao.github.io/PathFinding.js/visual/
         // тут использовал поиск в ширину Breadth-First-Search, самый простой в реализации, но не самый эффективный

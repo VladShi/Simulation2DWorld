@@ -6,6 +6,7 @@ public class Predator extends Creature{
 
     private static final String sprite = " \uD83E\uDD81 "; // "🦁" "🐯" "🐆" "🐅"
     private static final int speed = Settings.PREDATOR_SPEED;
+    private static final Class<? extends Entity> classOfTarget = Herbivore.class;
     public int attackPower = Settings.PREDATOR_ATTACK_POWER;
 
     @Override
@@ -20,5 +21,10 @@ public class Predator extends Creature{
     @Override
     public int getSpeed() {
         return speed;
+    }
+
+    @Override
+    public Class<? extends Entity> getClassOfTarget() {
+        return classOfTarget;
     }
 }

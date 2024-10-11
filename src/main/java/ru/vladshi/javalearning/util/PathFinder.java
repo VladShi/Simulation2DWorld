@@ -4,13 +4,14 @@ import ru.vladshi.javalearning.Coordinates;
 import ru.vladshi.javalearning.WorldMap;
 import ru.vladshi.javalearning.entity.Entity;
 
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Optional;
 
 public class PathFinder {
 
-    public static Queue<Coordinates> findPath(WorldMap worldMap,
+    public static Deque<Coordinates> findPath(WorldMap worldMap,
                                               Coordinates start,
                                               Class<? extends Entity> classOfTarget) {
 

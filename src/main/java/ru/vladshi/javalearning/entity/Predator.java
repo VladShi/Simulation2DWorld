@@ -4,9 +4,9 @@ import ru.vladshi.javalearning.config.Settings;
 
 public class Predator extends Creature{
 
-    private final String sprite = " \uD83E\uDD81 "; // "🦁" "🐯" "🐆" "🐅"
+    private static final String sprite = " \uD83E\uDD81 "; // "🦁" "🐯" "🐆" "🐅"
+    private static final int speed = Settings.PREDATOR_SPEED;
     public int attackPower = Settings.PREDATOR_ATTACK_POWER;
-    public int speed = Settings.PREDATOR_SPEED;
 
     @Override
     public void makeMove() {
@@ -15,5 +15,10 @@ public class Predator extends Creature{
     @Override
     public String getSprite() {
         return sprite;
+    }
+
+    @Override
+    public int getSpeed() {
+        return speed;
     }
 }

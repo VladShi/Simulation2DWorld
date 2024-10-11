@@ -3,13 +3,12 @@ package ru.vladshi.javalearning.entity;
 import ru.vladshi.javalearning.Coordinates;
 import ru.vladshi.javalearning.util.PathFinder;
 
-import java.util.Optional;
 import java.util.Queue;
 
 abstract public class Creature extends Entity {
-    int speed;
-    int healthPoints;
-    private Entity target;
+
+    public Entity target = null;
+    // TODO добавить поле classOfTarget каждому Creature, желательно как статическое и передать его внутри в findPath()
 
     public abstract void makeMove();
 
@@ -17,7 +16,5 @@ abstract public class Creature extends Entity {
         return PathFinder.findPath(this.worldMap, this.coordinates, classOfTarget);
     }
 
-    public Optional<Entity> getTarget() {
-        return Optional.ofNullable(target);
-    }
+    abstract public int getSpeed();
 }

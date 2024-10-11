@@ -9,10 +9,15 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class WorldMap {
 
-    public static final int MAX_WIDTH = Settings.WORLD_MAP_MAX_WIDTH;
-    public static final int MAX_HEIGHT = Settings.WORLD_MAP_MAX_HEIGHT;
+    public final int MAX_WIDTH;
+    public final int MAX_HEIGHT;
 
     public HashMap<Coordinates, Entity> entitiesMap = new HashMap<>();
+
+    public WorldMap() {
+        this.MAX_WIDTH = Settings.WORLD_MAP_MAX_WIDTH;
+        this.MAX_HEIGHT = Settings.WORLD_MAP_MAX_HEIGHT;
+    }
 
     public void putEntity(Coordinates coordinates, Entity entity) {
         entity.coordinates = coordinates;

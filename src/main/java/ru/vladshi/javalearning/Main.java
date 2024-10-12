@@ -19,13 +19,12 @@ public class Main {
         worldMap.putEntity(new Coordinates(6,8), grass2);
         WorldMapConsoleRenderer renderer = new WorldMapConsoleRenderer();
         renderer.render(worldMap);
-        System.out.println(herbivore.getPathToTarget());
         for (int i = 0; i < 13; i++) {
+            System.out.println("======================");
             herbivore.makeMove();
             if (i == 6)
-                worldMap.entitiesMap.remove(grass1.coordinates);
+                worldMap.clearCell(grass1.coordinates);
             renderer.render(worldMap);
-            System.out.println(herbivore.getPathToTarget());
             Thread.sleep(600);
         }
     }

@@ -13,7 +13,7 @@ public class WorldMap {
     public final int MAX_WIDTH = Settings.WORLD_MAP_MAX_WIDTH;
     public final int MAX_HEIGHT = Settings.WORLD_MAP_MAX_HEIGHT;
 
-    public final HashMap<Coordinates, Entity> entitiesMap = new HashMap<>();
+    private final HashMap<Coordinates, Entity> entitiesMap = new HashMap<>();
 
     private WorldMap() {
     }
@@ -40,6 +40,10 @@ public class WorldMap {
 
     public Optional<Entity> getCellContents(Coordinates coordinates) {
         return Optional.ofNullable(entitiesMap.get(coordinates));
+    }
+
+    public void clearCell(Coordinates coordinates) {
+        entitiesMap.remove(coordinates);
     }
 
     public boolean doesMapHaveObjectsOf(Class<? extends Entity> clazz) {

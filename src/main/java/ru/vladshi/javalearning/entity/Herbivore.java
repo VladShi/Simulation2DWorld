@@ -20,9 +20,9 @@ public class Herbivore extends Creature {
             if (pathToTarget == null) {
                 return;
             }
-            Optional<Entity> target = this.worldMap.getCellContents(pathToTarget.peekLast());
+            Optional<Entity> target = worldMap.getCellContents(pathToTarget.peekLast());
             boolean targetExists = target.isPresent() && target.get().getClass().equals(classOfTarget);
-            Optional<Entity> nextCell = this.worldMap.getCellContents(pathToTarget.peekFirst());
+            Optional<Entity> nextCell = worldMap.getCellContents(pathToTarget.peekFirst());
             if (targetExists) {
                 if (nextCell.isEmpty()) {
                     worldMap.entitiesMap.remove((this.coordinates));

@@ -8,7 +8,7 @@ import java.util.Queue;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        WorldMap worldMap = new WorldMap();
+        WorldMap worldMap = WorldMap.getInstance();
         Herbivore herbivore = new Herbivore();
         Grass grass1 = new Grass();
         Grass grass2 = new Grass();

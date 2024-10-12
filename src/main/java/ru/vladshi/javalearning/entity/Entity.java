@@ -5,8 +5,8 @@ import ru.vladshi.javalearning.WorldMap;
 
 abstract public class Entity {
 
+    public static WorldMap worldMap = WorldMap.getInstance();
     public Coordinates coordinates;
-    public WorldMap worldMap;
 
     public abstract String getSprite();
 }

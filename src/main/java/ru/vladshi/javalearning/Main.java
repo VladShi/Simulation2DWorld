@@ -4,8 +4,6 @@ import ru.vladshi.javalearning.entity.Grass;
 import ru.vladshi.javalearning.entity.Herbivore;
 import ru.vladshi.javalearning.entity.Rock;
 
-import java.util.Queue;
-
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         WorldMap worldMap = WorldMap.getInstance();
@@ -19,13 +17,15 @@ public class Main {
         worldMap.putEntity(new Coordinates(6,8), grass2);
         WorldMapConsoleRenderer renderer = new WorldMapConsoleRenderer();
         renderer.render(worldMap);
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < 15; i++) {
             System.out.println("======================");
             herbivore.makeMove();
             if (i == 6)
                 worldMap.clearCell(grass1.coordinates);
+            if (i == 12)
+                worldMap.clearCell(grass2.coordinates);
             renderer.render(worldMap);
-            Thread.sleep(600);
+            Thread.sleep(500);
         }
     }
 }

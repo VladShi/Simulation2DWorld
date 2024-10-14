@@ -11,15 +11,16 @@ import java.util.Optional;
 
 public class PathFinder {
 
-    public static Deque<Coordinates> findPath(WorldMap worldMap,
-                                              Coordinates start,
-                                              Class<? extends Entity> classOfTarget) {
+    public static void findPath(Deque<Coordinates> path,
+                                Coordinates start,
+                                Class<? extends Entity> classOfTarget) {
 
         // визуализация различных алгоритмов https://qiao.github.io/PathFinding.js/visual/
         // тут использовал поиск в ширину Breadth-First-Search, самый простой в реализации, но не самый эффективный
-
+        WorldMap worldMap = WorldMap.getInstance();
         if (!worldMap.doesMapHaveObjectsOf(classOfTarget)) {
-            return null;
+            path.clear();
+            return;
         }
 
         int rows = worldMap.MAX_HEIGHT;
@@ -62,14 +63,15 @@ public class PathFinder {
                 }
             }
         }
+        path.clear();
+        if (target == null) {
+            return;
+        }
         Coordinates cursor = target;
-        LinkedList<Coordinates> path = new LinkedList<>();
         while (!cursor.equals(start)) {
-            path.add(cursor);
+            path.addFirst(cursor);
             cursor = cameFromCell[cursor.row()][cursor.column()];
         }
-        path = path.reversed();
-        return path;
     }
 
     /* Ниже нет кода.

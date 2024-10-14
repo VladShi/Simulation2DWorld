@@ -26,7 +26,7 @@ public class PathFinder {
         int rows = worldMap.MAX_HEIGHT;
         int cols = worldMap.MAX_WIDTH;
 
-        Coordinates[][] cameFromCell = new Coordinates[rows][cols];
+        int[][][] cameFromCell = new int[rows][cols][2];
         boolean[][] visited = new boolean[rows][cols];
 
         Queue<Coordinates> queue = new LinkedList<>();
@@ -52,7 +52,8 @@ public class PathFinder {
                 if ((nRow >= 0 && nRow < rows) && (nCol >= 0 && nCol < cols) && !visited[nRow][nCol]) {
                     visited[nRow][nCol] = true;
                     Coordinates neighbourCellCoordinates = new Coordinates(nRow, nCol);
-                    cameFromCell[nRow][nCol] = currentCoordinates;
+                    cameFromCell[nRow][nCol][0] = curRow;
+                    cameFromCell[nRow][nCol][1] = curColumn;
                     Optional<Entity> cell = worldMap.getCellContents(neighbourCellCoordinates);
                     if (cell.isEmpty()) {
                         queue.add(neighbourCellCoordinates);
@@ -70,7 +71,8 @@ public class PathFinder {
         Coordinates cursor = target;
         while (!cursor.equals(start)) {
             path.addFirst(cursor);
-            cursor = cameFromCell[cursor.row()][cursor.column()];
+            cursor = new Coordinates(cameFromCell[cursor.row()][cursor.column()][0],
+                                     cameFromCell[cursor.row()][cursor.column()][1]);
         }
     }
 

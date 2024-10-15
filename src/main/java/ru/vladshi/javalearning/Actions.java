@@ -16,10 +16,10 @@ public class Actions {
         в Settings. Ничего другого не смог придумать
          */
         for (Map.Entry<Class<? extends Entity>, Integer> entry : Settings.NUMBER_OF_ENTITIES.entrySet()) {
-            Class<?> entityClass = entry.getKey();
+            Class<? extends Entity> entityClass = entry.getKey();
             for (int i = 0; i < entry.getValue(); i++) {
                 try {
-                    worldMap.putEntityToRandomEmptyCell((Entity) entityClass.getDeclaredConstructor().newInstance());
+                    worldMap.putEntityToRandomEmptyCell(entityClass.getConstructor().newInstance());
                 } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                          NoSuchMethodException e) {
                     throw new RuntimeException(e);

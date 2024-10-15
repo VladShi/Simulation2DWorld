@@ -11,7 +11,7 @@ public class Settings {
 
     public static final int HERBIVORE_HEALTH_POINTS = 50;
     public static final int HERBIVORE_SPEED = 1;
-    public static final int PREDATOR_SPEED = 2;
+    public static final int PREDATOR_SPEED = 1;
     public static final int PREDATOR_ATTACK_POWER = 20;
 
     public static final Map<Class<? extends Entity>, Integer> NUMBER_OF_ENTITIES;

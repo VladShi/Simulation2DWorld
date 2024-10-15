@@ -17,10 +17,10 @@ abstract public class Creature extends Entity {
 
     abstract public Class<? extends Entity> getClassOfTarget();
 
-    public void goToTarget(int stepsCounter) {
+    public int goToTarget(int stepsCounter) {
         Optional<Entity> target = this.getTarget();
         if (target.isEmpty())
-            return;
+            return 0;
         while(stepsCounter > 0) {
             Optional<Entity> nextCell = worldMap.getCellContents(this.path.peekFirst());
             if (nextCell.isEmpty()) {
@@ -33,6 +33,7 @@ abstract public class Creature extends Entity {
                 PathFinder.findPath(this.path ,this.coordinates, this.getClassOfTarget());
             }
         }
+        return stepsCounter;
     }
 
     private Deque<Coordinates> getPathToTarget() {

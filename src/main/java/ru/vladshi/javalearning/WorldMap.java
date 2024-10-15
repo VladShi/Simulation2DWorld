@@ -39,6 +39,8 @@ public class WorldMap {
     }
 
     public Optional<Entity> getCellContents(Coordinates coordinates) {
+        if (coordinates == null)
+            return Optional.empty();
         return Optional.ofNullable(entitiesMap.get(coordinates));
     }
 
@@ -52,5 +54,9 @@ public class WorldMap {
                 return true;
             }
         return false;
+    }
+
+    public HashMap<Coordinates, Entity> getEntitiesMap() {
+        return entitiesMap;
     }
 }

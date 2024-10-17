@@ -18,7 +18,7 @@ public class Settings {
 
     static {
         NUMBER_OF_ENTITIES = new WeakHashMap<Class<? extends Entity>, Integer>();
-        NUMBER_OF_ENTITIES.put(Rock.class, 2);
+        NUMBER_OF_ENTITIES.put(Rock.class, 3);
         NUMBER_OF_ENTITIES.put(Tree.class, 2);
         NUMBER_OF_ENTITIES.put(Grass.class, 2);
         NUMBER_OF_ENTITIES.put(Herbivore.class, 2);

@@ -1,27 +1,60 @@
 package ru.vladshi.javalearning;
 
+import java.util.Scanner;
+
 public class Simulation {
 
     private int moveCounts = 0;
     private final WorldMapConsoleRenderer renderer = new WorldMapConsoleRenderer();
     private final WorldMap worldMap = WorldMap.getInstance();
+    private volatile boolean paused = false;
 
     public void nextTurn() {
         moveCounts++;
-        Actions.turnActions();
         renderer.render(worldMap);
+        Actions.turnActions();
     }
 
-    public void startSimulation() {
+    public void startSimulation() throws InterruptedException {
         Actions.initWorldMap();
-        while (moveCounts < 100) {
+
+        Thread thread = threadToPauseSimulation();
+        thread.start();
+
+        while (true) {
             System.out.println("===Simulation=== Turn number = " + moveCounts);
             nextTurn();
-            try {
-                Thread.sleep(600);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            Thread.sleep(600);
+            while (paused) {
+                Thread.sleep(1);
             }
         }
+    }
+
+    public void pauseSimulation() {
+        if (!paused) paused = true;
+        else paused = false;
+    }
+
+    private Thread threadToPauseSimulation() {
+        Thread thread = new Thread(() -> {
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                String input = scanner.nextLine();
+                if (input.equals("q")) {
+                    scanner.close();
+                    System.exit(0);
+                } else {
+                    pauseSimulation();
+                }
+            }
+        });
+        thread.setDaemon(true);
+        return thread;
     }
 }

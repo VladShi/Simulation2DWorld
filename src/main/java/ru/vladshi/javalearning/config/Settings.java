@@ -8,6 +8,7 @@ import java.util.WeakHashMap;
 public class Settings {
     public static final int WORLD_MAP_MAX_WIDTH = 10;
     public static final int WORLD_MAP_MAX_HEIGHT = 10;
+    public static final boolean DIAGONALS_ON = false;
 
     public static final int HERBIVORE_HEALTH_POINTS = 50;
     public static final int HERBIVORE_SPEED = 1;

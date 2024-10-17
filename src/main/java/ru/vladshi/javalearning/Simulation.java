@@ -38,13 +38,13 @@ public class Simulation {
 
     private Thread threadToPauseSimulation() {
         Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             Scanner scanner = new Scanner(System.in);
             while (true) {
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
                 String input = scanner.nextLine();
                 if (input.equals("q")) {
                     scanner.close();
@@ -52,6 +52,7 @@ public class Simulation {
                 } else {
                     pauseSimulation();
                 }
+                Thread.yield();
             }
         });
         thread.setDaemon(true);

@@ -2,6 +2,7 @@ package ru.vladshi.javalearning.util;
 
 import ru.vladshi.javalearning.Coordinates;
 import ru.vladshi.javalearning.WorldMap;
+import ru.vladshi.javalearning.config.Settings;
 import ru.vladshi.javalearning.entity.Entity;
 
 import java.util.Deque;
@@ -36,16 +37,25 @@ public class PathFinder {
 
         Coordinates target = null;
 
-        // Какую дельту необходимо прибавить к координате, что бы проверить соседние ячейки (верх, низ, лево, право)
-        int[] deltaRow = {-1, 1, 0, 0};
-        int[] deltaCol = {0, 0, -1, 1};
+
+        int[] deltaRow;
+        int[] deltaCol;
+
+        if (Settings.DIAGONALS_ON) {
+            deltaRow = new int[]{-1, -1, 0, 1, 1,  1,  0, -1};
+            deltaCol = new int[]{ 0,  1, 1, 1, 0, -1, -1, -1};
+        } else {
+            // Какую дельту необходимо прибавить к координате, что бы проверить соседние ячейки (верх, низ, лево, право)
+            deltaRow = new int[]{-1, 0, 1,  0};
+            deltaCol = new int[]{ 0, 1, 0, -1};
+        }
 
         outerLoop:
         while (!queue.isEmpty()) {
             Coordinates currentCoordinates = queue.poll();
             int curRow = currentCoordinates.row();
             int curColumn = currentCoordinates.column();
-            for (int i = 0; i < 4; i++) {  // Проверяем четырех соседей (верх, низ, лево, право)
+            for (int i = 0; i < deltaRow.length; i++) {  // Проверяем соседние ячейки
                 int nRow = curRow + deltaRow[i];
                 int nCol = curColumn + deltaCol[i]; // neighbourColumnCoordinate
                 // Проверяем что координаты соседей не выходят за пределы поля и что мы их ещё не проверяли:

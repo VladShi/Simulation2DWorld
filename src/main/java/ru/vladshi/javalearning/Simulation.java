@@ -2,63 +2,56 @@ package ru.vladshi.javalearning;
 
 import ru.vladshi.javalearning.renderer.ConsoleRenderer;
 
-import java.util.Scanner;
-
 public class Simulation {
 
-    private int moveCounts = 0;
+    private int turnNumber = 0;
     private final ConsoleRenderer renderer = new ConsoleRenderer();
     private final WorldMap worldMap = WorldMap.getInstance();
     private volatile boolean paused = false;
+    private volatile boolean running = false;
 
-    public void nextTurn() {
-        moveCounts++;
-        renderer.render(worldMap);
-        Actions.turnActions();
-    }
-
-    public void startSimulation() throws InterruptedException {
-        Actions.initWorldMap();
-
-        Thread thread = threadToPauseSimulation();
-        thread.start();
-
-        while (true) {
-            System.out.println("===Simulation=== Turn number = " + moveCounts);
-            nextTurn();
-            System.out.println("=Пауза: Enter==Выход: q -> Enter=");
-            Thread.sleep(600);
-            while (paused) {
+    public void start() {
+        running = true;
+        while (running) {
+            if (!paused) {
+                makeTurn();
+                try {
+                    Thread.sleep(800);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            try {
                 Thread.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
     }
 
-    public void pauseSimulation() {
-        if (!paused) paused = true;
-        else paused = false;
+    public void flipPause() {
+        if (paused) {
+            paused = false;
+        } else {
+            paused = true;
+        }
     }
 
-    private Thread threadToPauseSimulation() {
-        Thread thread = new Thread(() -> {
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            Scanner scanner = new Scanner(System.in);
-            while (true) {
-                String input = scanner.nextLine();
-                if (input.equals("q")) {
-                    scanner.close();
-                    System.exit(0);
-                } else {
-                    pauseSimulation();
-                }
-                Thread.yield();
-            }
-        });
-        thread.setDaemon(true);
-        return thread;
+    public void stop() {
+        running = false;
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+    }
+
+    private void makeTurn() {
+        renderer.render(worldMap, turnNumber);
+        Actions.turnActions();
+        turnNumber++;
     }
 }

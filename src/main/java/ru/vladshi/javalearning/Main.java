@@ -1,9 +1,7 @@
 package ru.vladshi.javalearning;
 
-import java.util.Scanner;
-
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         System.out.println("""
                 ██████╗ ██████╗       ██╗    ██╗ ██████╗ ██████╗ ██╗     ██████╗             \s
@@ -18,18 +16,10 @@ public class Main {
                 ███████╗██║██╔████╔██║██║   ██║██║     ███████║   ██║   ██║██║   ██║██╔██╗ ██║
                 ╚════██║██║██║╚██╔╝██║██║   ██║██║     ██╔══██║   ██║   ██║██║   ██║██║╚██╗██║
                 ███████║██║██║ ╚═╝ ██║╚██████╔╝███████╗██║  ██║   ██║   ██║╚██████╔╝██║ ╚████║
-                ╚══════╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝""");
-        System.out.println("""
+                ╚══════╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝
                 * Нажмите Enter для запуска симуляции. \s
                 * Для приостановки симуляции так же нажмите Enter. \s
                 * Для выхода введите q и затем нажмите Enter.""");
-        Scanner sc = new Scanner(System.in);
-        String word = sc.nextLine();
-        if (word.equals("q")) {
-            sc.close();
-            System.exit(0);
-        }
-        Simulation simulation = new Simulation();
-        simulation.startSimulation();
+        SimulationManager.runSimulation();
     }
 }

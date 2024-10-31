@@ -6,7 +6,6 @@ import java.util.Optional;
 
 public class Predator extends Creature {
 
-    private static final String sprite = " \uD83E\uDD81 "; // "🦁" "🐯" "🐆" "🐅"
     private static final int speed = Settings.PREDATOR_SPEED;
     private static final Class<? extends Entity> classOfTarget = Herbivore.class;
     private static final int attackPower = Settings.PREDATOR_ATTACK_POWER;
@@ -31,11 +30,6 @@ public class Predator extends Creature {
             }
             stepsLeft = goToTarget(stepsLeft);
         }
-    }
-
-    @Override
-    public String getSprite() {
-        return sprite;
     }
 
     @Override

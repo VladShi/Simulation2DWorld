@@ -1,11 +1,13 @@
 package ru.vladshi.javalearning;
 
+import ru.vladshi.javalearning.renderer.ConsoleRenderer;
+
 import java.util.Scanner;
 
 public class Simulation {
 
     private int moveCounts = 0;
-    private final WorldMapConsoleRenderer renderer = new WorldMapConsoleRenderer();
+    private final ConsoleRenderer renderer = new ConsoleRenderer();
     private final WorldMap worldMap = WorldMap.getInstance();
     private volatile boolean paused = false;
 
@@ -24,6 +26,7 @@ public class Simulation {
         while (true) {
             System.out.println("===Simulation=== Turn number = " + moveCounts);
             nextTurn();
+            System.out.println("=Пауза: Enter==Выход: q -> Enter=");
             Thread.sleep(600);
             while (paused) {
                 Thread.sleep(1);

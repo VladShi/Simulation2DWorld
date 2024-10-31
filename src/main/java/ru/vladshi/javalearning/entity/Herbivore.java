@@ -6,7 +6,6 @@ import java.util.Optional;
 
 public class Herbivore extends Creature implements CanBeAttacked {
 
-    private static final String sprite = " \uD83E\uDD8C ";
     private static final int speed = Settings.HERBIVORE_SPEED;
     private static final Class<? extends Entity> classOfTarget = Grass.class;
     private int healthPoints = Settings.HERBIVORE_HEALTH_POINTS;
@@ -33,11 +32,6 @@ public class Herbivore extends Creature implements CanBeAttacked {
     @Override
     public boolean isOutOfHealthPoints() {
         return this.healthPoints <= 0;
-    }
-
-    @Override
-    public String getSprite() {
-        return sprite;
     }
 
     @Override

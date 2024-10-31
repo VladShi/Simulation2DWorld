@@ -28,6 +28,10 @@ public class WorldMap {
     }
 
     public void putEntityToRandomEmptyCell(Entity entity) {
+        boolean isMapFull = entitiesMap.size() >= MAX_WIDTH * MAX_HEIGHT;
+        if (isMapFull) {
+            throw new RuntimeException("Map has already been full");
+        }
         while (true) {
             Coordinates randomCoordinates =  new Coordinates(ThreadLocalRandom.current().nextInt(0, MAX_HEIGHT),
                                                              ThreadLocalRandom.current().nextInt(0, MAX_WIDTH));

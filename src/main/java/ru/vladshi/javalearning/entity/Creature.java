@@ -89,6 +89,6 @@ abstract public class Creature extends Entity {
     }
 
     private void updatePath() {
-        PathFinder.findPath(this.rememberedPath, this.coordinates, this.classOfTarget);
+        this.rememberedPath = PathFinder.findPath(worldMap, this.coordinates, this.classOfTarget);
     }
 }

@@ -9,55 +9,86 @@ import java.util.Optional;
 
 abstract public class Creature extends Entity {
 
-    protected final Deque<Coordinates> path = new LinkedList<>();
+    protected Deque<Coordinates> rememberedPath = new LinkedList<>();
+    protected final int speed;
+    protected final Class<? extends Entity> classOfTarget;
 
-    public abstract void makeMove();
-
-    abstract public int getSpeed();
-
-    abstract public Class<? extends Entity> getClassOfTarget();
-
-    public int goToTarget(int stepsCounter) {
-        Optional<Entity> target = this.getTarget();
-        if (target.isEmpty())
-            return 0;
-        while(stepsCounter > 0) {
-            Optional<Entity> nextCell = worldMap.getCellContents(this.path.peekFirst());
-            if (nextCell.isEmpty()) {
-                this.takeStepToTarget();
-                stepsCounter--;
-            } else if(this.path.size() == 1){
-                break;
-            } else {
-                this.path.clear();
-                PathFinder.findPath(this.path ,this.coordinates, this.getClassOfTarget());
-            }
-        }
-        return stepsCounter;
+    protected Creature(int speed, Class<? extends Entity> classOfTarget) {
+        this.speed = speed;
+        this.classOfTarget = classOfTarget;
     }
 
-    private Deque<Coordinates> getPathToTarget() {
-        if (this.path.isEmpty()) {
-            PathFinder.findPath(this.path, this.coordinates, this.getClassOfTarget());
+    abstract public void makeMove();
+
+    protected void moveOneStepToTarget() {
+        this.checkAndUpdateCurrentTarget();
+        if (!this.hasValidCurrentTarget()) {
+            return;
         }
-        return this.path;
+        if (this.getNextCell().isEmpty()) {
+            this.moveOneStepByPath();
+            return;
+        }
+        if (this.hasReachedTarget()) {
+            return;
+        }
+        this.updatePath();
+        if (this.hasNoTarget()) {
+            return;
+        }
+        this.moveOneStepByPath();
     }
 
-    private Optional<Entity> getTarget() {
-        Deque<Coordinates> pathToTarget = this.getPathToTarget();
-        if (pathToTarget.isEmpty()) {
+    protected Optional<Coordinates> getCurrentTargetCoordinates() {
+        return Optional.ofNullable(this.rememberedPath.peekLast());
+    }
+
+    protected boolean hasReachedTarget() {
+        if (this.rememberedPath.size() == 1) {
+            return this.hasValidCurrentTarget();
+        }
+        return false;
+    }
+
+    protected void eatTarget() {
+        worldMap.clearCell(this.rememberedPath.pollLast());
+    }
+
+    private boolean hasValidCurrentTarget() {
+        Optional<Coordinates> targetCoordinates = this.getCurrentTargetCoordinates();
+        if (targetCoordinates.isEmpty()) {
+            return false;
+        }
+        Optional<Entity> target = worldMap.getCellContents(targetCoordinates.get());
+        return target.isPresent() && target.get().getClass().equals(this.classOfTarget);
+    }
+
+    private void checkAndUpdateCurrentTarget() {
+        if (!this.hasValidCurrentTarget())
+            this.updatePath();
+    }
+
+    private void moveOneStepByPath() {
+        worldMap.clearCell(this.coordinates);
+        worldMap.putEntity(this.rememberedPath.pollFirst(), this);
+    }
+
+    private Optional<Coordinates> getNextCellCoordinates() {
+        return Optional.ofNullable(this.rememberedPath.peekFirst());
+    }
+
+    private Optional<Entity> getNextCell() {
+        if (this.getNextCellCoordinates().isEmpty()) {
             return Optional.empty();
         }
-        Optional<Entity> target = worldMap.getCellContents(pathToTarget.peekLast());
-        if (target.isPresent() && target.get().getClass().equals(this.getClassOfTarget())) {
-            return target;
-        }
-        this.path.clear();
-        return this.getTarget();
+        return worldMap.getCellContents(this.getNextCellCoordinates().get());
     }
 
-    private void takeStepToTarget() {
-            worldMap.clearCell((this.coordinates));
-            worldMap.putEntity(this.path.pollFirst(), this);
+    private boolean hasNoTarget() {
+        return getCurrentTargetCoordinates().isEmpty();
+    }
+
+    private void updatePath() {
+        PathFinder.findPath(this.rememberedPath, this.coordinates, this.classOfTarget);
     }
 }

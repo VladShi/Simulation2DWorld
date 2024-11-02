@@ -1,44 +1,58 @@
 package ru.vladshi.javalearning.entity;
 
+import ru.vladshi.javalearning.Coordinates;
 import ru.vladshi.javalearning.config.Settings;
-
-import java.util.Optional;
 
 public class Predator extends Creature {
 
-    private static final int speed = Settings.PREDATOR_SPEED;
-    private static final Class<? extends Entity> classOfTarget = Herbivore.class;
-    private static final int attackPower = Settings.PREDATOR_ATTACK_POWER;
+    private final int attackPower;
+
+    public Predator(){
+        super(
+            Settings.PREDATOR_SPEED,
+            Herbivore.class
+        );
+        this.attackPower = Settings.PREDATOR_ATTACK_POWER;
+    }
 
     @Override
     public void makeMove() {
-        int stepsLeft = this.getSpeed();
-        while (stepsLeft >= 0) {
-            Optional<Entity> nextCell = worldMap.getCellContents(this.path.peekFirst());
-            if (nextCell.isPresent()
-                    && nextCell.get().getClass().equals(classOfTarget)
-                        && nextCell.get() instanceof CanBeAttacked target) {
-                target.takeDamage(attackPower);
-                if (target.isOutOfHealthPoints() && stepsLeft >= 1) {
-                    worldMap.clearCell(this.coordinates);
-                    worldMap.putEntity(nextCell.get().coordinates, this);
-                    return;
+        int stepsAvailable = this.speed;
+        while (stepsAvailable >= 0) {
+            if (this.hasReachedTarget()) {
+                this.attackTarget();
+                if (isTargetDead()) {
+                    this.eatTarget();
                 }
+                if (stepsAvailable == 0) {
+                    break;
+                }
+                stepsAvailable = 0;
+            } else if (stepsAvailable > 0) {
+                this.moveOneStepToTarget();
             }
-            if (stepsLeft == 0) {
-                return;
-            }
-            stepsLeft = goToTarget(stepsLeft);
+            stepsAvailable--;
         }
     }
 
-    @Override
-    public int getSpeed() {
-        return speed;
+    private void attackTarget() {
+        CanBeAttacked target = getTarget();
+        target.takeDamage(attackPower);
     }
 
-    @Override
-    public Class<? extends Entity> getClassOfTarget() {
-        return classOfTarget;
+    private boolean isTargetDead() {
+        CanBeAttacked target = getTarget();
+            return target.isDead();
+    }
+
+    private CanBeAttacked getTarget() {
+        Coordinates targetCoordinates = this.getCurrentTargetCoordinates()
+                .orElseThrow(() -> new IllegalArgumentException("Target coordinate is null"));
+        Entity currentTarget = worldMap.getCellContents(targetCoordinates)
+                .orElseThrow(() -> new IllegalArgumentException("Target coordinate is not present on the map"));
+        if (currentTarget instanceof CanBeAttacked target) {
+            return target;
+        }
+        throw new IllegalArgumentException("This entity cannot be attacked");
     }
 }

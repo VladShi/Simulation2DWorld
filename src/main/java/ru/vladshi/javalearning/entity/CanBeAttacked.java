@@ -4,5 +4,5 @@ public interface CanBeAttacked {
 
     void takeDamage(int damage);
 
-    boolean isOutOfHealthPoints();
+    boolean isDead();
 }

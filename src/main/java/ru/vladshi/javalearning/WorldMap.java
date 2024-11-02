@@ -1,7 +1,7 @@
 package ru.vladshi.javalearning;
 
 import ru.vladshi.javalearning.config.Settings;
-import ru.vladshi.javalearning.entity.*;
+import ru.vladshi.javalearning.entity.Entity;
 
 import java.util.HashMap;
 import java.util.Optional;

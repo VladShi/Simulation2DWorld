@@ -2,26 +2,33 @@ package ru.vladshi.javalearning.entity;
 
 import ru.vladshi.javalearning.config.Settings;
 
-import java.util.Optional;
-
 public class Herbivore extends Creature implements CanBeAttacked {
 
-    private static final int speed = Settings.HERBIVORE_SPEED;
-    private static final Class<? extends Entity> classOfTarget = Grass.class;
-    private int healthPoints = Settings.HERBIVORE_HEALTH_POINTS;
+    private int healthPoints;
+
+    public Herbivore() {
+        super(
+            Settings.HERBIVORE_SPEED,
+            Grass.class
+        );
+        this.healthPoints = Settings.HERBIVORE_HEALTH_POINTS;
+    }
 
     @Override
     public void makeMove() {
-        if (this.healthPoints <= 0) {
+        if (this.isDead()) {
             return;
         }
-        Optional<Entity> nextCell = worldMap.getCellContents(this.path.peekFirst());
-        if (nextCell.isPresent() && nextCell.get().getClass().equals(classOfTarget)) {
-            worldMap.clearCell(this.coordinates);
-            worldMap.putEntity(nextCell.get().coordinates, this);
-            return;
+        int stepsAvailable = this.speed;
+        while (stepsAvailable > 0) {
+            if (this.hasReachedTarget()) {
+                this.eatTarget();
+                stepsAvailable = 0;
+            } else {
+                this.moveOneStepToTarget();
+            }
+            stepsAvailable--;
         }
-        goToTarget(this.getSpeed());
     }
 
     @Override
@@ -30,17 +37,7 @@ public class Herbivore extends Creature implements CanBeAttacked {
     }
 
     @Override
-    public boolean isOutOfHealthPoints() {
+    public boolean isDead() {
         return this.healthPoints <= 0;
-    }
-
-    @Override
-    public int getSpeed() {
-        return speed;
-    }
-
-    @Override
-    public Class<? extends Entity> getClassOfTarget() {
-        return classOfTarget;
     }
 }

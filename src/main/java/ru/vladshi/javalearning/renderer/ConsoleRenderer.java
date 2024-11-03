@@ -11,8 +11,8 @@ public class ConsoleRenderer {
     public void render(WorldMap worldMap, int turnNumber) {
         System.out.println("** Simulation ** Turn number = " + turnNumber);
 
-        for (int row = 0; row < worldMap.MAX_HEIGHT; row++) {
-            for (int column = 0; column < worldMap.MAX_WIDTH; column++) {
+        for (int row = 0; row < worldMap.maxHeight; row++) {
+            for (int column = 0; column < worldMap.maxWidth; column++) {
                 Coordinates coordinates = new Coordinates(row, column);
                 renderCell(worldMap, coordinates);
             }

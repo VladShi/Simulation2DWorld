@@ -23,8 +23,8 @@ public class PathFinder {
             return path;
         }
 
-        int rows = worldMap.MAX_HEIGHT;
-        int cols = worldMap.MAX_WIDTH;
+        int rows = worldMap.maxHeight;
+        int cols = worldMap.maxWidth;
 
         int[][][] cameFromCell = new int[rows][cols][2];
         boolean[][] visited = new boolean[rows][cols];

@@ -22,6 +22,7 @@ public class WorldMap {
     }
 
     public void putEntity(Coordinates coordinates, Entity entity) {
+        validateCoordinates(coordinates);
         entity.coordinates = coordinates;
         entitiesMap.put(coordinates, entity);
     }
@@ -29,10 +30,12 @@ public class WorldMap {
     public Optional<Entity> getCellContents(Coordinates coordinates) {
         if (coordinates == null)
             return Optional.empty();
+        validateCoordinates(coordinates);
         return Optional.ofNullable(entitiesMap.get(coordinates));
     }
 
     public void clearCell(Coordinates coordinates) {
+        validateCoordinates(coordinates);
         entitiesMap.remove(coordinates);
     }
 
@@ -46,5 +49,14 @@ public class WorldMap {
 
     public HashMap<Coordinates, Entity> getEntitiesMap() {
         return entitiesMap;
+    }
+
+    private void validateCoordinates(Coordinates coordinates) {
+        if (coordinates == null) {
+            throw new IllegalArgumentException("Coordinates cannot be null");
+        }
+        if (coordinates.row() > maxHeight || coordinates.column() > maxWidth) {
+            throw new IllegalArgumentException("Coordinates are out of bounds");
+        }
     }
 }
